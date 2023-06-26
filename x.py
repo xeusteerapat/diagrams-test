@@ -1,5 +1,5 @@
 from diagrams import Cluster, Diagram
-from diagrams.aws.compute import ECS
+from diagrams.aws.compute import EKS
 from diagrams.aws.database import ElastiCache, Aurora, DMS
 from diagrams.aws.network import ELB
 from diagrams.aws.network import Route53
@@ -17,14 +17,14 @@ with Diagram("Clustered Web Services", show=False):
     load_balancer = ELB("Load Balancer")
 
     with Cluster("AWS"):
-        svc_group = [ECS("web1"),
-                     ECS("web2"),
-                     ECS("web3")]
+        svc_group = [EKS("web1"),
+                     EKS("web2"),
+                     EKS("web3")]
         
     with Cluster("On Prem"):
-        on_prem_group = [ECS("web1"),
-                     ECS("web2"),
-                     ECS("web3")]
+        on_prem_group = [EKS("web1"),
+                     EKS("web2"),
+                     EKS("web3")]
 
     with Cluster("DB Cluster"):
         db_primary = Aurora("userdb")
